@@ -417,8 +417,8 @@ export default function Home() {
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               paddingBottom: '0.5rem',
-              paddingLeft: '3rem',
-              paddingRight: '3rem',
+              paddingLeft: '0',
+              paddingRight: '1.5rem',
             }}
             className="carousel"
           >
