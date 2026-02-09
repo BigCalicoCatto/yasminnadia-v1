@@ -436,7 +436,6 @@ export default function Home() {
                   'Studio/gym of choice (in KL)',
                   '1-2 hours per session',
                   '2-3 sessions per week',
-                  'Online/in person discussion available',
                   'Free initial consultation',
                   'Free WhatsApp support group',
                   'Free WhatsApp channel training resources',
@@ -459,7 +458,7 @@ export default function Home() {
               <div
                 key={idx}
                 style={{
-                  flex: '0 0 280px',
+                  flex: '0 0 340px',
                   backgroundColor: '#ffffff',
                   border: '2px solid #FF6B9D',
                   borderRadius: '1rem',
