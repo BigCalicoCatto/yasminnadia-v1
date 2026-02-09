@@ -517,40 +517,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Right Arrow */}
-          <button
-            onClick={() => scroll('right')}
-            style={{
-              position: 'absolute',
-              right: '0.5rem',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              backgroundColor: 'rgba(255, 255, 255, 0.3)',
-              border: '2px solid #ffffff',
-              cursor: 'pointer',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#ffffff',
-              fontSize: '1.1rem',
-              fontWeight: 700,
-              transition: 'all 0.3s ease',
-              zIndex: 5,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#ffffff';
-              e.currentTarget.style.color = '#FF6B9D';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
-              e.currentTarget.style.color = '#ffffff';
-            }}
-          >
-            ›
-          </button>
         </div>
 
         {/* Dot Indicators */}
