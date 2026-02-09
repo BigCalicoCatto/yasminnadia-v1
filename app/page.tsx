@@ -392,132 +392,180 @@ export default function Home() {
       </section>
 
       {/* WHAT I OFFER - CAROUSEL */}
-      <section style={{ padding: '2rem 1.5rem' }}>
+      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D' }}>
         <h2
           style={{
             fontSize: '1.8rem',
             fontWeight: 700,
             marginBottom: '1.5rem',
-            color: '#FF6B9D',
+            color: '#ffffff',
+            textAlign: 'center',
           }}
         >
           What I Offer
         </h2>
-        {/* Carousel */}
-        <div
-          ref={carouselRef}
-          style={{
-            display: 'flex',
-            gap: '1.5rem',
-            overflowX: 'auto',
-            scrollBehavior: 'smooth',
-            marginBottom: '1.5rem',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            paddingBottom: '0.5rem',
-          }}
-          className="carousel"
-        >
-          {[
-            {
-              title: 'Starter Consult',
-              items: ['30 minutes chat', 'Needs and wants discussion', 'Simple workout and diet plan', 'Training outline suitability plan'],
-              price: 'FREE',
-            },
-            {
-              title: 'Small Group Session',
-              items: [
-                'Max 5 people',
-                'Focus on form, confidence, community',
-                'Studio/gym of choice (in KL)',
-                '1-2 hours per session',
-                '2-3 sessions per week',
-                'Online/in person discussion available',
-                'Free initial consultation',
-                'Free WhatsApp support group',
-                'Free WhatsApp channel training resources',
-                'Free WhatsApp channel easy nutritional recipes',
-              ],
-              price: 'From RM50/person',
-            },
-            {
-              title: '1-ON-1 Session',
-              items: [
-                'Personalized workout plan',
-                'Personalized diet/nutrition plan',
-                '24/7 WhatsApp support',
-                'Weekly check-ins',
-                'In person or online',
-              ],
-              price: 'from RM100/week',
-            },
-          ].map((card, idx) => (
-            <div
-              key={idx}
-              style={{
-                flex: '0 0 280px',
-                backgroundColor: '#ffffff',
-                border: '2px solid #FF6B9D',
-                borderRadius: '1rem',
-                padding: '1.5rem',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', color: '#FF6B9D', margin: 0 }}>
-                {card.title}
-              </h3>
-              <ul
+        
+        <div style={{ position: 'relative' }}>
+          {/* Carousel */}
+          <div
+            ref={carouselRef}
+            style={{
+              display: 'flex',
+              gap: '1.5rem',
+              overflowX: 'auto',
+              scrollBehavior: 'smooth',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              paddingBottom: '0.5rem',
+              paddingLeft: '3rem',
+              paddingRight: '3rem',
+            }}
+            className="carousel"
+          >
+            {[
+              {
+                title: 'Starter Consult',
+                items: ['30 minutes chat', 'Needs and wants discussion', 'Simple workout and diet plan', 'Training outline suitability plan'],
+                price: 'FREE',
+              },
+              {
+                title: 'Small Group Session',
+                items: [
+                  'Max 5 people',
+                  'Focus on form, confidence, community',
+                  'Studio/gym of choice (in KL)',
+                  '1-2 hours per session',
+                  '2-3 sessions per week',
+                  'Online/in person discussion available',
+                  'Free initial consultation',
+                  'Free WhatsApp support group',
+                  'Free WhatsApp channel training resources',
+                  'Free WhatsApp channel easy nutritional recipes',
+                ],
+                price: 'From RM50/person',
+              },
+              {
+                title: '1-ON-1 Session',
+                items: [
+                  'Personalized workout plan',
+                  'Personalized diet/nutrition plan',
+                  '24/7 WhatsApp support',
+                  'Weekly check-ins',
+                  'In person or online',
+                ],
+                price: 'From RM100/week',
+              },
+            ].map((card, idx) => (
+              <div
+                key={idx}
                 style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: '0 0 1.5rem 0',
-                  flex: 1,
-                  fontSize: '0.85rem',
-                  lineHeight: 1.6,
+                  flex: '0 0 280px',
+                  backgroundColor: '#ffffff',
+                  border: '2px solid #FF6B9D',
+                  borderRadius: '1rem',
+                  padding: '1.5rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  boxShadow: '0 8px 20px rgba(255, 107, 157, 0.2)',
                 }}
               >
-                {card.items.map((item, i) => (
-                  <li key={i} style={{ marginBottom: '0.4rem' }}>
-                    • {item}
-                  </li>
-                ))}
-              </ul>
-              <p style={{ fontSize: '1.2rem', fontWeight: 700, color: '#FF6B9D', margin: 0 }}>
-                {card.price}
-              </p>
-            </div>
-          ))}
-        </div>
+                <div
+                  style={{
+                    backgroundColor: '#FF6B9D',
+                    color: '#ffffff',
+                    padding: '0.8rem',
+                    borderRadius: '0.6rem',
+                    marginBottom: '1.2rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>
+                    {card.title}
+                  </h3>
+                </div>
+                <ul
+                  style={{
+                    listStyle: 'none',
+                    padding: 0,
+                    margin: '0 0 1.5rem 0',
+                    flex: 1,
+                    fontSize: '0.85rem',
+                    lineHeight: 1.6,
+                    color: '#FF6B9D',
+                  }}
+                >
+                  {card.items.map((item, i) => (
+                    <li key={i} style={{ marginBottom: '0.4rem' }}>
+                      • {item}
+                    </li>
+                  ))}
+                </ul>
+                <div
+                  style={{
+                    backgroundColor: '#FF6B9D',
+                    color: '#ffffff',
+                    padding: '0.8rem',
+                    borderRadius: '0.6rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  <p style={{ fontSize: '1.2rem', fontWeight: 700, margin: 0 }}>
+                    {card.price}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
 
-        {/* Scroll Controls */}
-        <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center' }}>
-          <button
-            onClick={() => scroll('left')}
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '1.5rem',
-              color: '#FF6B9D',
-              padding: '0.5rem',
-            }}
-          >
-            ‹ Prev
-          </button>
+          {/* Right Arrow */}
           <button
             onClick={() => scroll('right')}
             style={{
-              background: 'none',
-              border: 'none',
+              position: 'absolute',
+              right: '0.5rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              border: '2px solid #ffffff',
               cursor: 'pointer',
-              fontSize: '1.5rem',
-              color: '#FF6B9D',
-              padding: '0.5rem',
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#ffffff',
+              fontSize: '1.1rem',
+              fontWeight: 700,
+              transition: 'all 0.3s ease',
+              zIndex: 5,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#FF6B9D';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+              e.currentTarget.style.color = '#ffffff';
             }}
           >
-            Next ›
+            ›
           </button>
+        </div>
+
+        {/* Dot Indicators */}
+        <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center', marginTop: '1.5rem' }}>
+          {[0, 1, 2].map((idx) => (
+            <div
+              key={idx}
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.4)',
+              }}
+            />
+          ))}
         </div>
 
         <style>{`
