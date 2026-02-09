@@ -4,7 +4,12 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const [heroOpacity, setHeroOpacity] = useState(1);
+  const [heroTextVisible, setHeroTextVisible] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setHeroTextVisible(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +34,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ backgroundColor: '#ffffff', color: '#1a1a1a', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div style={{ backgroundColor: '#ffffff', color: '#1a1a1a', fontFamily: 'Trebuchet MS, sans-serif' }}>
       {/* HERO */}
       <section
         style={{
@@ -38,6 +43,7 @@ export default function Home() {
           height: '100vh',
           overflow: 'hidden',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           padding: '2rem',
@@ -68,6 +74,22 @@ export default function Home() {
             opacity: heroOpacity,
           }}
         />
+
+        {/* Top Line */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 10,
+            width: '80%',
+            height: '2px',
+            backgroundColor: 'rgba(255, 107, 157, 0.5)',
+            marginBottom: '2rem',
+            opacity: heroTextVisible ? 1 : 0,
+            animation: heroTextVisible ? 'slideInLine 0.8s ease-out' : 'none',
+          }}
+        />
+
+        {/* Text Content */}
         <div
           style={{
             position: 'relative',
@@ -78,6 +100,7 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            animation: heroTextVisible ? 'slideInText 0.8s ease-out 0.2s both' : 'none',
           }}
         >
           <div
@@ -106,7 +129,7 @@ export default function Home() {
             style={{
               fontSize: '1rem',
               marginTop: '0.5rem',
-              marginBottom: '2rem',
+              marginBottom: '0',
               fontWeight: 400,
               letterSpacing: '0.05em',
               color: '#FF6B9D',
@@ -115,6 +138,22 @@ export default function Home() {
             Your journey to better health starts here
           </p>
         </div>
+
+        {/* Bottom Line */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 10,
+            width: '80%',
+            height: '2px',
+            backgroundColor: 'rgba(255, 107, 157, 0.5)',
+            marginTop: '2rem',
+            opacity: heroTextVisible ? 1 : 0,
+            animation: heroTextVisible ? 'slideInLine 0.8s ease-out 0.4s both' : 'none',
+          }}
+        />
+
+        {/* Arrow */}
         <div
           style={{
             position: 'absolute',
@@ -137,7 +176,28 @@ export default function Home() {
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </div>
+
         <style>{`
+          @keyframes slideInLine {
+            from {
+              width: 0;
+              opacity: 0;
+            }
+            to {
+              width: 80%;
+              opacity: 1;
+            }
+          }
+          @keyframes slideInText {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
           @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(10px); }
@@ -147,20 +207,30 @@ export default function Home() {
 
       {/* ABOUT ME */}
       <section style={{ padding: '2rem 1.5rem' }}>
+        <h2
+          style={{
+            fontSize: '1.8rem',
+            fontWeight: 700,
+            marginBottom: '1.5rem',
+            color: '#FF6B9D',
+          }}
+        >
+          About Me
+        </h2>
         <div
           style={{
             display: 'flex',
-            flexDirection: 'row',
             gap: '1.5rem',
+            flexWrap: 'wrap',
             alignItems: 'flex-start',
           }}
         >
           <div
             style={{
-              flex: '0 0 40%',
+              flex: '0 0 auto',
+              width: '140px',
               borderRadius: '0.8rem',
               overflow: 'hidden',
-              flexShrink: 0,
             }}
           >
             <img
@@ -169,17 +239,7 @@ export default function Home() {
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>
-          <div style={{ flex: 1 }}>
-            <h2
-              style={{
-                fontSize: '1.8rem',
-                fontWeight: 700,
-                marginBottom: '1rem',
-                color: '#FF6B9D',
-              }}
-            >
-              About Me
-            </h2>
+          <div style={{ flex: '1', minWidth: '0' }}>
             <div style={{ lineHeight: 1.7, fontSize: '0.95rem' }}>
               <p style={{ margin: '0.5rem 0' }}>Hi, I'm Yasmin Nadia.</p>
               <p style={{ margin: '0.5rem 0' }}>
@@ -188,21 +248,23 @@ export default function Home() {
               <p style={{ margin: '0.5rem 0' }}>
                 They should feel like care for your body, your mind, and your life.
               </p>
-              <p style={{ margin: '0.5rem 0' }}>
-                My passion is helping people move in ways that feel good, not forced.
-              </p>
-              <p style={{ margin: '0.5rem 0' }}>
-                And my happiest moment? Watching a client realize they're stronger than they ever believed, physically and mentally.
-              </p>
-              <p style={{ margin: '0.5rem 0' }}>
-                This isn't about perfect form or extreme results.
-              </p>
-              <p style={{ margin: '0.5rem 0' }}>
-                It's about showing up for yourself, one honest step at a time.
-              </p>
-              <p style={{ margin: '0.5rem 0', fontWeight: 700 }}>That's what we're here for.</p>
             </div>
           </div>
+        </div>
+        <div style={{ lineHeight: 1.7, fontSize: '0.95rem', marginTop: '1rem' }}>
+          <p style={{ margin: '0.5rem 0' }}>
+            My passion is helping people move in ways that feel good, not forced.
+          </p>
+          <p style={{ margin: '0.5rem 0' }}>
+            And my happiest moment? Watching a client realize they're stronger than they ever believed, physically and mentally.
+          </p>
+          <p style={{ margin: '0.5rem 0' }}>
+            This isn't about perfect form or extreme results.
+          </p>
+          <p style={{ margin: '0.5rem 0' }}>
+            It's about showing up for yourself, one honest step at a time.
+          </p>
+          <p style={{ margin: '0.5rem 0', fontWeight: 700 }}>That's what we're here for.</p>
         </div>
       </section>
 
@@ -218,25 +280,36 @@ export default function Home() {
         >
           Who I Work With
         </h2>
-        <ul
+        <div
           style={{
-            listStyle: 'none',
-            padding: 0,
-            margin: '0 0 1.5rem 0',
-            fontSize: '0.95rem',
-            lineHeight: 1.8,
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '1rem',
+            marginBottom: '2rem',
           }}
         >
-          {['Pre-wedding bride', 'Postpartum recovery', 'Post-injury rehab', 'Busy professionals', 'Total beginners', 'Returning after a break', 'Managing stress or low energy'].map((item) => (
-            <li key={item} style={{ marginBottom: '0.3rem' }}>
-              • {item}
-            </li>
+          {['Pre-wedding bride', 'Postpartum recovery', 'Post-injury rehab', 'Busy professionals', 'Total beginners', 'Returning after a break', 'Managing stress or low energy'].map((item, idx) => (
+            <div
+              key={idx}
+              style={{
+                padding: '1.2rem',
+                backgroundColor: '#FF6B9D',
+                color: '#ffffff',
+                borderRadius: '0.8rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                fontSize: '0.95rem',
+              }}
+            >
+              {item}
+            </div>
           ))}
-        </ul>
+        </div>
         <p
           style={{
             fontSize: '1rem',
             fontWeight: 700,
+            textAlign: 'center',
             marginTop: '1.5rem',
           }}
         >
@@ -245,21 +318,33 @@ export default function Home() {
       </section>
 
       {/* STATISTICS */}
-      <section style={{ padding: '2rem 1.5rem' }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '0.5rem', textAlign: 'center' }}>
-          87 clients • 2 years • 1 promise:
-        </h2>
-        <p
-          style={{
-            fontSize: '1.2rem',
-            fontWeight: 600,
-            color: '#FF6B9D',
-            textAlign: 'center',
-            margin: '0.5rem 0 0 0',
-          }}
-        >
-          Fitness that fits you — not the other way around.
-        </p>
+      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: '3rem', fontWeight: 900, margin: '0 0 0.5rem 0', color: '#ffffff' }}>
+              87
+            </h2>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#ffffff', margin: 0 }}>
+              Clients Transformed
+            </p>
+          </div>
+          <div style={{ marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: '3rem', fontWeight: 900, margin: '0 0 0.5rem 0', color: '#ffffff' }}>
+              2
+            </h2>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#ffffff', margin: 0 }}>
+              Years of Excellence
+            </p>
+          </div>
+          <div style={{ marginBottom: '1rem' }}>
+            <h2 style={{ fontSize: '3rem', fontWeight: 900, margin: '0 0 0.5rem 0', color: '#ffffff' }}>
+              1
+            </h2>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#ffffff', margin: 0 }}>
+              Promise: Fitness That Fits You
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* TESTIMONIALS */}
@@ -292,15 +377,15 @@ export default function Home() {
             <div
               key={idx}
               style={{
-                padding: '1.5rem',
+                padding: '1.2rem',
                 backgroundColor: '#ffffff',
                 borderRadius: '0.8rem',
-                borderLeft: '4px solid #FF6B9D',
-                lineHeight: 1.6,
+                border: '3px solid #FF6B9D',
+                lineHeight: 1.5,
               }}
             >
-              <p style={{ fontStyle: 'italic', marginBottom: '0.8rem', fontSize: '0.95rem' }}>{testimonial.text}</p>
-              <p style={{ fontWeight: 700, color: '#FF6B9D', fontSize: '0.95rem', margin: 0 }}>— {testimonial.author}</p>
+              <p style={{ fontStyle: 'italic', marginBottom: '0.5rem', fontSize: '0.9rem', margin: '0 0 0.6rem 0' }}>{testimonial.text}</p>
+              <p style={{ fontWeight: 700, color: '#FF6B9D', fontSize: '0.9rem', margin: 0 }}>— {testimonial.author}</p>
             </div>
           ))}
         </div>
