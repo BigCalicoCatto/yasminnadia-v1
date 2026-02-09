@@ -75,25 +75,38 @@ export default function Home() {
             textAlign: 'center',
             color: '#ffffff',
             opacity: heroOpacity,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <h1
+          <div
             style={{
-              fontSize: '3.5rem',
-              fontWeight: 900,
-              margin: 0,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.1,
+              display: 'inline-block',
+              backgroundColor: '#FF6B9D',
+              padding: '0.8rem 1.5rem',
+              borderRadius: '1rem',
+              marginBottom: '1.5rem',
             }}
           >
-            YASMIN
-            <br />
-            NADIA
-          </h1>
+            <h1
+              style={{
+                fontSize: '4.5rem',
+                fontWeight: 900,
+                margin: 0,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              YASMIN NADIA
+            </h1>
+          </div>
           <p
             style={{
-              fontSize: '1.2rem',
-              marginTop: '1.5rem',
+              fontSize: '1rem',
+              marginTop: '0.5rem',
+              marginBottom: '2rem',
               fontWeight: 400,
               letterSpacing: '0.05em',
             }}
@@ -104,7 +117,7 @@ export default function Home() {
         <div
           style={{
             position: 'absolute',
-            bottom: '2rem',
+            bottom: '8rem',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 10,
