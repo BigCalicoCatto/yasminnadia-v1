@@ -465,7 +465,7 @@ export default function Home() {
                   padding: '1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  boxShadow: '0 8px 20px rgba(255, 107, 157, 0.2)',
+                  boxShadow: 'inset 0 0 0 2px #FF6B9D, 0 8px 20px rgba(255, 107, 157, 0.2)',
                 }}
               >
                 <div
@@ -540,24 +540,77 @@ export default function Home() {
         `}</style>
       </section>
 
+      {/* PICK YOUR GOAL */}
+      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+        <h2
+          style={{
+            fontSize: '1.8rem',
+            fontWeight: 700,
+            marginBottom: '1.5rem',
+            color: '#FF6B9D',
+            textAlign: 'center',
+          }}
+        >
+          Pick Your Goal and Let's Make it REAL!
+        </h2>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '1rem',
+            marginBottom: '2rem',
+          }}
+        >
+          {['Wedding Glow Up', 'Mom Energy Reset', 'Comeback Stronger', 'Beginner Confidence Boost', 'Daily Stress Melter', 'Injury Fresh Comeback', 'Busy Life Energy Boost'].map((goal, idx) => (
+            <div
+              key={idx}
+              style={{
+                padding: '1.2rem',
+                backgroundColor: '#FF6B9D',
+                color: '#ffffff',
+                borderRadius: '0.8rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                fontSize: '0.95rem',
+              }}
+            >
+              {goal}
+            </div>
+          ))}
+        </div>
+        <p
+          style={{
+            fontSize: '1rem',
+            fontWeight: 700,
+            textAlign: 'center',
+            marginTop: '1.5rem',
+          }}
+        >
+          Or just whatever you want!
+          <br />
+          You don't need reason to start moving!
+        </p>
+      </section>
+
       {/* CTA */}
       <section style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
             gap: '1.5rem',
+            alignItems: 'flex-start',
           }}
         >
           <div
             style={{
+              flex: '0 0 40%',
               borderRadius: '0.8rem',
               overflow: 'hidden',
             }}
           >
             <img src="/yasminnadiac.webp" alt="Yasmin Nadia Training" style={{ width: '100%', height: 'auto', display: 'block' }} />
           </div>
-          <div>
+          <div style={{ flex: 1 }}>
             <h2
               style={{
                 fontSize: '1.8rem',
