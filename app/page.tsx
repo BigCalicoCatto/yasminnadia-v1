@@ -83,18 +83,18 @@ export default function Home() {
           <div
             style={{
               display: 'inline-block',
-              backgroundColor: '#FF6B9D',
-              padding: '0.8rem 1.5rem',
+              backgroundColor: 'rgba(255, 107, 157, 0.5)',
+              padding: '0.8rem 1.2rem',
               borderRadius: '1rem',
               marginBottom: '1.5rem',
             }}
           >
             <h1
               style={{
-                fontSize: '4.5rem',
+                fontSize: '3.2rem',
                 fontWeight: 900,
                 margin: 0,
-                letterSpacing: '-0.03em',
+                letterSpacing: '-0.02em',
                 lineHeight: 1.1,
                 whiteSpace: 'nowrap',
               }}
@@ -109,6 +109,7 @@ export default function Home() {
               marginBottom: '2rem',
               fontWeight: 400,
               letterSpacing: '0.05em',
+              color: '#FF6B9D',
             }}
           >
             Your journey to better health starts here
