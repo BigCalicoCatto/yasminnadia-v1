@@ -6,7 +6,30 @@ export default function Home() {
   const [heroOpacity, setHeroOpacity] = useState(1);
   const [heroTextVisible, setHeroTextVisible] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Observe all sections with data-animate
+    const sections = document.querySelectorAll('[data-animate]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
 
   const sections = [
     { id: 'about', label: 'About Me' },
@@ -131,14 +154,17 @@ export default function Home() {
         .carousel::-webkit-scrollbar {
           display: none;
         }
-        .section-fade-in {
-          animation: fadeInUp 0.6s ease-out forwards;
+        .animate-visible {
+          animation: fadeInUp 0.8s ease-out forwards !important;
         }
-        .card-fade-in {
-          animation: scaleIn 0.5s ease-out forwards;
+        .animate-visible-left {
+          animation: slideInFromLeft 0.8s ease-out forwards !important;
         }
-        .menu-item {
-          animation: hamburgerOpen 0.3s ease-out forwards;
+        .animate-visible-right {
+          animation: slideInFromRight 0.8s ease-out forwards !important;
+        }
+        .animate-visible-scale {
+          animation: scaleIn 0.6s ease-out forwards !important;
         }
       `}</style>
 
@@ -339,14 +365,14 @@ export default function Home() {
       </section>
 
       {/* ABOUT ME */}
-      <section id="about" style={{ padding: '2rem 1.5rem' }}>
+      <section id="about" data-animate style={{ padding: '2rem 1.5rem', opacity: visibleSections.has('about') ? 1 : 0 }}>
         <h2
           style={{
             fontSize: '1.8rem',
             fontWeight: 700,
             marginBottom: '1.5rem',
             color: '#FF6B9D',
-            animation: 'fadeInUp 0.6s ease-out',
+            animation: visibleSections.has('about') ? 'fadeInUp 0.6s ease-out' : 'none',
           }}
         >
           About Me
@@ -405,14 +431,14 @@ export default function Home() {
       </section>
 
       {/* WHO I WORK WITH */}
-      <section id="work-with" style={{ padding: '2rem 1.5rem', backgroundColor: '#ffffff' }}>
+      <section id="work-with" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#ffffff', opacity: visibleSections.has('work-with') ? 1 : 0 }}>
         <h2
           style={{
             fontSize: '1.8rem',
             fontWeight: 700,
             marginBottom: '1.5rem',
             color: '#FF6B9D',
-            animation: 'fadeInUp 0.6s ease-out',
+            animation: visibleSections.has('work-with') ? 'fadeInUp 0.6s ease-out' : 'none',
           }}
         >
           Who I Work With
@@ -436,7 +462,8 @@ export default function Home() {
                 textAlign: 'center',
                 fontWeight: 600,
                 fontSize: '0.95rem',
-                animation: `scaleIn 0.5s ease-out ${idx * 0.05}s forwards`,
+                animation: visibleSections.has('work-with') ? `scaleIn 0.5s ease-out ${idx * 0.05}s forwards` : 'none',
+                opacity: visibleSections.has('work-with') ? 1 : 0,
                 ...(idx === 6 && { gridColumn: '1 / -1', maxWidth: '200px', margin: '0 auto' }),
               }}
             >
@@ -451,7 +478,8 @@ export default function Home() {
             textAlign: 'center',
             marginTop: '1.5rem',
             color: '#FF6B9D',
-            animation: 'fadeInUp 0.6s ease-out 0.3s both',
+            animation: visibleSections.has('work-with') ? 'fadeInUp 0.6s ease-out 0.3s both' : 'none',
+            opacity: visibleSections.has('work-with') ? 1 : 0,
           }}
         >
           I meet you where you are — and move with your life!
@@ -500,14 +528,14 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section id="testimonials" style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+      <section id="testimonials" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9', opacity: visibleSections.has('testimonials') ? 1 : 0 }}>
         <h2
           style={{
             fontSize: '1.8rem',
             fontWeight: 700,
             marginBottom: '1.5rem',
             color: '#FF6B9D',
-            animation: 'fadeInUp 0.6s ease-out',
+            animation: visibleSections.has('testimonials') ? 'fadeInUp 0.6s ease-out' : 'none',
           }}
         >
           What My Clients Say
@@ -535,7 +563,8 @@ export default function Home() {
                 borderRadius: '0.8rem',
                 border: '3px solid #FF6B9D',
                 lineHeight: 1.5,
-                animation: `slideInFromLeft 0.6s ease-out ${idx * 0.1}s forwards`,
+                animation: visibleSections.has('testimonials') ? `slideInFromLeft 0.6s ease-out ${idx * 0.1}s forwards` : 'none',
+                opacity: visibleSections.has('testimonials') ? 1 : 0,
               }}
             >
               <p style={{ fontStyle: 'italic', marginBottom: '0.5rem', fontSize: '0.9rem', margin: '0 0 0.6rem 0', color: '#1a1a1a' }}>{testimonial.text}</p>
@@ -546,7 +575,7 @@ export default function Home() {
       </section>
 
       {/* WHAT I OFFER - CAROUSEL */}
-      <section id="offer" style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D' }}>
+      <section id="offer" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D', opacity: visibleSections.has('offer') ? 1 : 0 }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -554,7 +583,7 @@ export default function Home() {
             marginBottom: '1.5rem',
             color: '#ffffff',
             textAlign: 'center',
-            animation: 'fadeInUp 0.6s ease-out',
+            animation: visibleSections.has('offer') ? 'fadeInUp 0.6s ease-out' : 'none',
           }}
         >
           What I Offer
@@ -621,7 +650,8 @@ export default function Home() {
                   display: 'flex',
                   flexDirection: 'column',
                   boxShadow: 'inset 0 0 0 2px #FF6B9D, 0 8px 20px rgba(255, 107, 157, 0.2)',
-                  animation: `scaleIn 0.5s ease-out ${idx * 0.1}s forwards`,
+                  animation: visibleSections.has('offer') ? `scaleIn 0.5s ease-out ${idx * 0.1}s forwards` : 'none',
+                  opacity: visibleSections.has('offer') ? 1 : 0,
                 }}
               >
                 <div
@@ -702,7 +732,7 @@ export default function Home() {
       />
 
       {/* PICK YOUR GOAL */}
-      <section id="goals" style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+      <section id="goals" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9', opacity: visibleSections.has('goals') ? 1 : 0 }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -710,7 +740,7 @@ export default function Home() {
             marginBottom: '1.5rem',
             color: '#FF6B9D',
             textAlign: 'center',
-            animation: 'fadeInUp 0.6s ease-out',
+            animation: visibleSections.has('goals') ? 'fadeInUp 0.6s ease-out' : 'none',
           }}
         >
           Pick Your Goal and Let's Make it REAL!
@@ -734,7 +764,8 @@ export default function Home() {
                 textAlign: 'center',
                 fontWeight: 600,
                 fontSize: '0.95rem',
-                animation: `scaleIn 0.5s ease-out ${idx * 0.05}s forwards`,
+                animation: visibleSections.has('goals') ? `scaleIn 0.5s ease-out ${idx * 0.05}s forwards` : 'none',
+                opacity: visibleSections.has('goals') ? 1 : 0,
               }}
             >
               {goal}
@@ -748,7 +779,8 @@ export default function Home() {
             textAlign: 'center',
             marginTop: '1.5rem',
             color: '#FF6B9D',
-            animation: 'fadeInUp 0.6s ease-out 0.3s both',
+            animation: visibleSections.has('goals') ? 'fadeInUp 0.6s ease-out 0.3s both' : 'none',
+            opacity: visibleSections.has('goals') ? 1 : 0,
           }}
         >
           Or just whatever you want!
@@ -769,7 +801,7 @@ export default function Home() {
       />
 
       {/* CTA */}
-      <section id="cta" style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+      <section id="cta" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9', opacity: visibleSections.has('cta') ? 1 : 0 }}>
         <div
           style={{
             display: 'flex',
