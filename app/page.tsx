@@ -11,6 +11,7 @@ export default function Home() {
   const sections = [
     { id: 'about', label: 'About Me' },
     { id: 'work-with', label: 'Who I Work With' },
+    { id: 'testimonials', label: 'What My Clients Say' },
     { id: 'offer', label: 'What I Offer' },
     { id: 'goals', label: 'Pick Your Goal' },
     { id: 'cta', label: 'Let\'s Connect' },
@@ -52,12 +53,102 @@ export default function Home() {
 
   return (
     <div style={{ backgroundColor: '#ffffff', color: '#1a1a1a', fontFamily: 'Trebuchet MS, sans-serif' }}>
+      <style>{`
+        @keyframes slideInLine {
+          from {
+            width: 0;
+            opacity: 0;
+          }
+          to {
+            width: 80%;
+            opacity: 1;
+          }
+        }
+        @keyframes slideInText {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateX(-50%) translateY(0); }
+          50% { transform: translateX(-50%) translateY(10px); }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes slideInFromLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes slideInFromRight {
+          from {
+            opacity: 0;
+            transform: translateX(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        @keyframes hamburgerOpen {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .carousel::-webkit-scrollbar {
+          display: none;
+        }
+        .section-fade-in {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .card-fade-in {
+          animation: scaleIn 0.5s ease-out forwards;
+        }
+        .menu-item {
+          animation: hamburgerOpen 0.3s ease-out forwards;
+        }
+      `}</style>
+
       {/* HEADER */}
       <header style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#ffffff', borderBottom: '1px solid #f0f0f0', padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FF6B9D', margin: 0 }}>Yasmin Nadia</h1>
         
         {/* Hamburger Button */}
         <button
+          id="hamburger-menu"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{
             background: 'none',
@@ -67,17 +158,19 @@ export default function Home() {
             flexDirection: 'column',
             gap: '5px',
             padding: '0.5rem',
+            transition: 'transform 0.3s ease',
+            transform: mobileMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)',
           }}
         >
-          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s' }} />
-          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s' }} />
-          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s' }} />
+          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s', transform: mobileMenuOpen ? 'rotate(45deg) translateY(10px)' : 'rotate(0deg)' }} />
+          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s', opacity: mobileMenuOpen ? 0 : 1 }} />
+          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s', transform: mobileMenuOpen ? 'rotate(-45deg) translateY(-10px)' : 'rotate(0deg)' }} />
         </button>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, backgroundColor: '#ffffff', borderBottom: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column' }}>
-            {sections.map((section) => (
+          <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, backgroundColor: '#ffffff', borderBottom: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', animation: 'hamburgerOpen 0.3s ease-out' }}>
+            {sections.map((section, idx) => (
               <button
                 key={section.id}
                 onClick={() => scrollToSection(section.id)}
@@ -87,10 +180,12 @@ export default function Home() {
                   border: 'none',
                   cursor: 'pointer',
                   textAlign: 'left',
-                  color: '#1a1a1a',
+                  color: '#FF6B9D',
                   fontWeight: 600,
                   fontSize: '1rem',
                   borderBottom: '1px solid #f0f0f0',
+                  animation: `hamburgerOpen 0.3s ease-out ${idx * 0.05}s forwards`,
+                  opacity: 0,
                 }}
               >
                 {section.label}
@@ -99,6 +194,7 @@ export default function Home() {
           </div>
         )}
       </header>
+
       {/* HERO */}
       <section
         style={{
@@ -240,33 +336,6 @@ export default function Home() {
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </div>
-
-        <style>{`
-          @keyframes slideInLine {
-            from {
-              width: 0;
-              opacity: 0;
-            }
-            to {
-              width: 80%;
-              opacity: 1;
-            }
-          }
-          @keyframes slideInText {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-          }
-        `}</style>
       </section>
 
       {/* ABOUT ME */}
@@ -277,6 +346,7 @@ export default function Home() {
             fontWeight: 700,
             marginBottom: '1.5rem',
             color: '#FF6B9D',
+            animation: 'fadeInUp 0.6s ease-out',
           }}
         >
           About Me
@@ -287,6 +357,7 @@ export default function Home() {
             gap: '1.5rem',
             flexWrap: 'wrap',
             alignItems: 'flex-start',
+            animation: 'slideInFromLeft 0.6s ease-out 0.2s both',
           }}
         >
           <div
@@ -305,18 +376,18 @@ export default function Home() {
             />
           </div>
           <div style={{ flex: '1', minWidth: '0' }}>
-            <div style={{ lineHeight: 1.7, fontSize: '0.95rem', textAlign: 'justify' }}>
-              <p style={{ margin: '0.5rem 0' }}>Hi, I'm Yasmin Nadia.</p>
-              <p style={{ margin: '0.5rem 0' }}>
+            <div style={{ lineHeight: 1.7, fontSize: '0.95rem', textAlign: 'justify', color: '#1a1a1a' }}>
+              <p style={{ margin: '0.5rem 0', fontWeight: 600, color: '#FF6B9D' }}>Hi, I'm Yasmin Nadia.</p>
+              <p style={{ margin: '0.5rem 0', color: '#1a1a1a' }}>
                 I believe health and fitness should never feel like a punishment.
               </p>
-              <p style={{ margin: '0.5rem 0' }}>
+              <p style={{ margin: '0.5rem 0', color: '#1a1a1a' }}>
                 They should feel like care for your body, your mind, and your life.
               </p>
             </div>
           </div>
         </div>
-        <div style={{ lineHeight: 1.7, fontSize: '0.95rem', marginTop: '1rem' }}>
+        <div style={{ lineHeight: 1.7, fontSize: '0.95rem', marginTop: '1rem', animation: 'slideInFromRight 0.6s ease-out 0.4s both', color: '#1a1a1a' }}>
           <p style={{ margin: '0.5rem 0' }}>
             My passion is helping people move in ways that feel good, not forced.
           </p>
@@ -329,7 +400,7 @@ export default function Home() {
           <p style={{ margin: '0.5rem 0' }}>
             It's about showing up for yourself, one honest step at a time.
           </p>
-          <p style={{ margin: '0.5rem 0', fontWeight: 700 }}>That's what we're here for.</p>
+          <p style={{ margin: '0.5rem 0', fontWeight: 700, color: '#FF6B9D' }}>That's what we're here for.</p>
         </div>
       </section>
 
@@ -341,6 +412,7 @@ export default function Home() {
             fontWeight: 700,
             marginBottom: '1.5rem',
             color: '#FF6B9D',
+            animation: 'fadeInUp 0.6s ease-out',
           }}
         >
           Who I Work With
@@ -364,6 +436,7 @@ export default function Home() {
                 textAlign: 'center',
                 fontWeight: 600,
                 fontSize: '0.95rem',
+                animation: `scaleIn 0.5s ease-out ${idx * 0.05}s forwards`,
                 ...(idx === 6 && { gridColumn: '1 / -1', maxWidth: '200px', margin: '0 auto' }),
               }}
             >
@@ -377,6 +450,8 @@ export default function Home() {
             fontWeight: 700,
             textAlign: 'center',
             marginTop: '1.5rem',
+            color: '#FF6B9D',
+            animation: 'fadeInUp 0.6s ease-out 0.3s both',
           }}
         >
           I meet you where you are — and move with your life!
@@ -390,13 +465,14 @@ export default function Home() {
           backgroundColor: '#FF6B9D',
           width: '60px',
           margin: '2rem auto',
+          animation: 'scaleIn 0.6s ease-out',
         }}
       />
 
       {/* STATISTICS */}
       <section style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D' }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ marginBottom: '2rem' }}>
+          <div style={{ marginBottom: '2rem', animation: 'slideInFromLeft 0.6s ease-out' }}>
             <h2 style={{ fontSize: '3rem', fontWeight: 900, margin: '0 0 0.5rem 0', color: '#ffffff' }}>
               87
             </h2>
@@ -404,7 +480,7 @@ export default function Home() {
               Clients Transformed
             </p>
           </div>
-          <div style={{ marginBottom: '2rem' }}>
+          <div style={{ marginBottom: '2rem', animation: 'slideInFromRight 0.6s ease-out 0.1s both' }}>
             <h2 style={{ fontSize: '3rem', fontWeight: 900, margin: '0 0 0.5rem 0', color: '#ffffff' }}>
               2
             </h2>
@@ -412,7 +488,7 @@ export default function Home() {
               Years of Excellence
             </p>
           </div>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: '1rem', animation: 'fadeInUp 0.6s ease-out 0.2s both' }}>
             <h2 style={{ fontSize: '3rem', fontWeight: 900, margin: '0 0 0.5rem 0', color: '#ffffff' }}>
               1
             </h2>
@@ -424,13 +500,14 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+      <section id="testimonials" style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
         <h2
           style={{
             fontSize: '1.8rem',
             fontWeight: 700,
             marginBottom: '1.5rem',
             color: '#FF6B9D',
+            animation: 'fadeInUp 0.6s ease-out',
           }}
         >
           What My Clients Say
@@ -458,9 +535,10 @@ export default function Home() {
                 borderRadius: '0.8rem',
                 border: '3px solid #FF6B9D',
                 lineHeight: 1.5,
+                animation: `slideInFromLeft 0.6s ease-out ${idx * 0.1}s forwards`,
               }}
             >
-              <p style={{ fontStyle: 'italic', marginBottom: '0.5rem', fontSize: '0.9rem', margin: '0 0 0.6rem 0' }}>{testimonial.text}</p>
+              <p style={{ fontStyle: 'italic', marginBottom: '0.5rem', fontSize: '0.9rem', margin: '0 0 0.6rem 0', color: '#1a1a1a' }}>{testimonial.text}</p>
               <p style={{ fontWeight: 700, color: '#FF6B9D', fontSize: '0.9rem', margin: 0 }}>— {testimonial.author}</p>
             </div>
           ))}
@@ -476,6 +554,7 @@ export default function Home() {
             marginBottom: '1.5rem',
             color: '#ffffff',
             textAlign: 'center',
+            animation: 'fadeInUp 0.6s ease-out',
           }}
         >
           What I Offer
@@ -542,6 +621,7 @@ export default function Home() {
                   display: 'flex',
                   flexDirection: 'column',
                   boxShadow: 'inset 0 0 0 2px #FF6B9D, 0 8px 20px rgba(255, 107, 157, 0.2)',
+                  animation: `scaleIn 0.5s ease-out ${idx * 0.1}s forwards`,
                 }}
               >
                 <div
@@ -608,13 +688,18 @@ export default function Home() {
             />
           ))}
         </div>
-
-        <style>{`
-          .carousel::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
       </section>
+
+      {/* Premium Line */}
+      <div
+        style={{
+          height: '2px',
+          backgroundColor: '#FF6B9D',
+          width: '60px',
+          margin: '2rem auto',
+          animation: 'scaleIn 0.6s ease-out',
+        }}
+      />
 
       {/* PICK YOUR GOAL */}
       <section id="goals" style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
@@ -625,6 +710,7 @@ export default function Home() {
             marginBottom: '1.5rem',
             color: '#FF6B9D',
             textAlign: 'center',
+            animation: 'fadeInUp 0.6s ease-out',
           }}
         >
           Pick Your Goal and Let's Make it REAL!
@@ -648,6 +734,7 @@ export default function Home() {
                 textAlign: 'center',
                 fontWeight: 600,
                 fontSize: '0.95rem',
+                animation: `scaleIn 0.5s ease-out ${idx * 0.05}s forwards`,
               }}
             >
               {goal}
@@ -660,6 +747,8 @@ export default function Home() {
             fontWeight: 700,
             textAlign: 'center',
             marginTop: '1.5rem',
+            color: '#FF6B9D',
+            animation: 'fadeInUp 0.6s ease-out 0.3s both',
           }}
         >
           Or just whatever you want!
@@ -675,6 +764,7 @@ export default function Home() {
           backgroundColor: '#FF6B9D',
           width: '60px',
           margin: '2rem auto',
+          animation: 'scaleIn 0.6s ease-out',
         }}
       />
 
@@ -686,6 +776,7 @@ export default function Home() {
             gap: '1.5rem',
             flexWrap: 'wrap',
             alignItems: 'flex-start',
+            animation: 'slideInFromLeft 0.6s ease-out',
           }}
         >
           <div
@@ -705,6 +796,7 @@ export default function Home() {
                 fontSize: '1.8rem',
                 fontWeight: 700,
                 marginBottom: '0.8rem',
+                color: '#1a1a1a',
               }}
             >
               Let's build a fitness plan that fits you
@@ -721,8 +813,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div style={{ marginTop: '1rem' }}>
-          <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+        <div style={{ marginTop: '1rem', animation: 'slideInFromRight 0.6s ease-out 0.2s both' }}>
+          <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6, color: '#1a1a1a' }}>
             Please don't hesitate to ask and book your free session.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
@@ -740,6 +832,8 @@ export default function Home() {
                   borderRadius: '0.6rem',
                   fontWeight: 600,
                   fontSize: '1rem',
+                  transition: 'all 0.3s ease',
+                  animation: `slideInFromRight 0.6s ease-out ${0.2}s forwards`,
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -761,6 +855,8 @@ export default function Home() {
                   borderRadius: '0.6rem',
                   fontWeight: '600',
                   fontSize: '1rem',
+                  transition: 'all 0.3s ease',
+                  animation: `slideInFromRight 0.6s ease-out ${0.25}s forwards`,
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -782,6 +878,8 @@ export default function Home() {
                   borderRadius: '0.6rem',
                   fontWeight: 600,
                   fontSize: '1rem',
+                  transition: 'all 0.3s ease',
+                  animation: `slideInFromRight 0.6s ease-out ${0.3}s forwards`,
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -803,6 +901,8 @@ export default function Home() {
                   borderRadius: '0.6rem',
                   fontWeight: 600,
                   fontSize: '1rem',
+                  transition: 'all 0.3s ease',
+                  animation: `slideInFromRight 0.6s ease-out ${0.35}s forwards`,
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -815,7 +915,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#1a1a1a', color: '#ffffff', textAlign: 'center' }}>
+      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#1a1a1a', color: '#ffffff', textAlign: 'center', animation: 'fadeInUp 0.6s ease-out' }}>
         <p style={{ margin: '0.5rem 0', fontSize: '0.9rem' }}>
           © Yasmin Nadia 2026
         </p>
