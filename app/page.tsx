@@ -172,6 +172,20 @@ export default function Home() {
       <header style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#ffffff', borderBottom: '1px solid #f0f0f0', padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FF6B9D', margin: 0 }}>Yasmin Nadia</h1>
         
+        {/* Social Icons */}
+        <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+          <a href="https://instagram.com/" style={{ color: '#FF6B9D', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'opacity 0.3s' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.057-1.645.069-4.849.069-3.204 0-3.584-.012-4.849-.069-3.259-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.322a1.44 1.44 0 110 2.881 1.44 1.44 0 010-2.881z"/>
+            </svg>
+          </a>
+          <a href="https://tiktok.com/" style={{ color: '#FF6B9D', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'opacity 0.3s' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.321 5.562a5.122 5.122 0 01-2.996-2.965A5.408 5.408 0 0012.4 1c-3.003 0-5.544 2.563-5.544 5.622 0 .442.052.872.144 1.287-2.324-.12-4.657-1.213-6.234-2.966C-.243 2.97-.604 3.956.247 4.721c.852.765 2.397 1.201 3.942 1.201.63 0 1.248-.084 1.846-.252v1.004c0 3.059 2.54 5.622 5.544 5.622 1.46 0 2.81-.559 3.777-1.468.897.059 1.799.237 2.664.527.643-2.084-.494-3.959-2.211-4.88 1.031-.169 1.99-.427 2.872-.766z"/>
+            </svg>
+          </a>
+        </div>
+        
         {/* Hamburger Button */}
         <button
           id="hamburger-menu"
@@ -413,21 +427,31 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div style={{ lineHeight: 1.7, fontSize: '0.95rem', marginTop: '1rem', animation: 'slideInFromRight 0.6s ease-out 0.4s both', color: '#1a1a1a' }}>
-          <p style={{ margin: '0.5rem 0' }}>
-            My passion is helping people move in ways that feel good, not forced.
-          </p>
-          <p style={{ margin: '0.5rem 0' }}>
-            And my happiest moment? Watching a client realize they're stronger than they ever believed, physically and mentally.
-          </p>
-          <p style={{ margin: '0.5rem 0' }}>
-            This isn't about perfect form or extreme results.
-          </p>
-          <p style={{ margin: '0.5rem 0' }}>
-            It's about showing up for yourself, one honest step at a time.
-          </p>
-          <p style={{ margin: '0.5rem 0', fontWeight: 700, color: '#FF6B9D' }}>That's what we're here for.</p>
-        </div>
+      </section>
+
+      {/* POWER MOTTO */}
+      <section style={{ 
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        backgroundColor: '#FF6B9D',
+        padding: '3rem 1.5rem',
+        textAlign: 'center',
+        animation: visibleSections.has('about') ? 'fadeInUp 0.8s ease-out 0.3s both' : 'none',
+        opacity: visibleSections.has('about') ? 1 : 0,
+      }}>
+        <p style={{
+          fontSize: '2.5rem',
+          fontWeight: 900,
+          color: '#ffffff',
+          margin: 0,
+          lineHeight: 1.2,
+          letterSpacing: '-0.01em',
+          maxWidth: '900px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}>
+          My passion is helping people move in ways that feel good, not forced.
+        </p>
       </section>
 
       {/* WHO I WORK WITH */}
