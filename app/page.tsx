@@ -174,14 +174,14 @@ export default function Home() {
         
         {/* Social Icons */}
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <a href="https://instagram.com/" style={{ color: '#FF6B9D', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'opacity 0.3s', hover: { opacity: 0.7 } }}>
+          <a href="https://instagram.com/" style={{ color: '#FF6B9D', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'opacity 0.3s' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path>
               <circle cx="17.5" cy="6.5" r="1.5"></circle>
             </svg>
           </a>
-          <a href="https://tiktok.com/" style={{ color: '#FF6B9D', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'opacity 0.3s', hover: { opacity: 0.7 } }}>
+          <a href="https://tiktok.com/" style={{ color: '#FF6B9D', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'opacity 0.3s' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.53.02C13.84 0 15.14.01 16.44 0h.12c.82 0 1.64.04 2.46.07a3.41 3.41 0 0 1 2.26 1.3c.55.7.88 1.58 1 2.47.05.31.09.63.09.95v.25c-.01 2.18 0 4.37.02 6.55.02.93-.05 1.87-.16 2.78a5.4 5.4 0 0 1-.45 1.75 4.6 4.6 0 0 1-3.12 2.39c-.312.065-.63.1-.95.1-.78.01-1.56 0-2.34-.02-.37-.01-.74-.02-1.12-.02h-.15c-1.68 0-3.36.02-5.04 0-.82-.01-1.64-.05-2.46-.1-.82-.05-1.63-.16-2.42-.35a4.6 4.6 0 0 1-3.12-2.39 5.4 5.4 0 0 1-.45-1.75c-.1-.9-.18-1.84-.16-2.78.02-2.18.01-4.37-.02-6.55V7.27c0-.32.04-.64.09-.95.12-.89.45-1.77 1-2.47a3.41 3.41 0 0 1 2.26-1.3c.82-.03 1.64-.07 2.46-.07h.12c1.3 0 2.6-.01 3.91-.02zm-.06 1.82c-1.25 0-2.49.01-3.74.03-.76.01-1.52.03-2.27.08-.6.04-1.13.15-1.55.36-.68.35-1.18.95-1.35 1.7-.1.4-.14.81-.15 1.23 0 2.08.01 4.15 0 6.23.01.8.04 1.59.16 2.36.15.92.62 1.72 1.35 2.07.42.21.95.32 1.55.36.75.05 1.51.07 2.27.08 1.25.02 2.49.03 3.74.03.99 0 1.99 0 2.98-.01.77-.02 1.54-.04 2.3-.1.6-.05 1.13-.16 1.55-.37.68-.35 1.18-.95 1.35-1.7.1-.4.14-.81.15-1.23 0-2.08-.01-4.15 0-6.23-.01-.8-.04-1.59-.16-2.36-.15-.92-.62-1.72-1.35-2.07-.42-.21-.95-.32-1.55-.36-.75-.05-1.51-.07-2.27-.08-1.25-.02-2.49-.03-3.74-.03zm6.34 3.25a1.13 1.13 0 1 0 0 2.26 1.13 1.13 0 0 0 0-2.26zm-6.34 1.52a3.74 3.74 0 1 0 0 7.48 3.74 3.74 0 0 0 0-7.48zm0 1.82a1.92 1.92 0 1 1 0 3.84 1.92 1.92 0 0 1 0-3.84z"/>
             </svg>
