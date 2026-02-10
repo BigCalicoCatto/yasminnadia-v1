@@ -169,7 +169,7 @@ export default function Home() {
             height="30"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#ffffff"
+            stroke="#FF6B9D"
             strokeWidth="2"
             style={{ opacity: heroOpacity }}
           >
@@ -231,6 +231,7 @@ export default function Home() {
               width: '140px',
               borderRadius: '0.8rem',
               overflow: 'hidden',
+              boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
             }}
           >
             <img
@@ -240,7 +241,7 @@ export default function Home() {
             />
           </div>
           <div style={{ flex: '1', minWidth: '0' }}>
-            <div style={{ lineHeight: 1.7, fontSize: '0.95rem' }}>
+            <div style={{ lineHeight: 1.7, fontSize: '0.95rem', textAlign: 'justify' }}>
               <p style={{ margin: '0.5rem 0' }}>Hi, I'm Yasmin Nadia.</p>
               <p style={{ margin: '0.5rem 0' }}>
                 I believe health and fitness should never feel like a punishment.
@@ -269,7 +270,7 @@ export default function Home() {
       </section>
 
       {/* WHO I WORK WITH */}
-      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#ffffff' }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -299,6 +300,7 @@ export default function Home() {
                 textAlign: 'center',
                 fontWeight: 600,
                 fontSize: '0.95rem',
+                ...(idx === 6 && { gridColumn: '1 / -1', maxWidth: '200px', margin: '0 auto' }),
               }}
             >
               {item}
@@ -316,6 +318,16 @@ export default function Home() {
           I meet you where you are — and move with your life!
         </p>
       </section>
+
+      {/* Premium Line */}
+      <div
+        style={{
+          height: '2px',
+          backgroundColor: '#FF6B9D',
+          width: '60px',
+          margin: '2rem auto',
+        }}
+      />
 
       {/* STATISTICS */}
       <section style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D' }}>
@@ -478,7 +490,7 @@ export default function Home() {
                     textAlign: 'center',
                   }}
                 >
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>
+                  <h3 style={{ fontSize: '1.3rem', fontWeight: 700, margin: 0 }}>
                     {card.title}
                   </h3>
                 </div>
@@ -486,10 +498,10 @@ export default function Home() {
                   style={{
                     listStyle: 'none',
                     padding: 0,
-                    margin: '0 0 1.5rem 0',
+                    margin: '0 0 1rem 0',
                     flex: 1,
-                    fontSize: '0.85rem',
-                    lineHeight: 1.6,
+                    fontSize: '0.95rem',
+                    lineHeight: 1.7,
                     color: '#FF6B9D',
                   }}
                 >
@@ -592,25 +604,38 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Premium Line */}
+      <div
+        style={{
+          height: '2px',
+          backgroundColor: '#FF6B9D',
+          width: '60px',
+          margin: '2rem auto',
+        }}
+      />
+
       {/* CTA */}
       <section style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
         <div
           style={{
             display: 'flex',
             gap: '1.5rem',
+            flexWrap: 'wrap',
             alignItems: 'flex-start',
           }}
         >
           <div
             style={{
-              flex: '0 0 40%',
+              flex: '0 0 auto',
+              width: '140px',
               borderRadius: '0.8rem',
               overflow: 'hidden',
+              marginTop: '1.5rem',
             }}
           >
             <img src="/yasminnadiac.webp" alt="Yasmin Nadia Training" style={{ width: '100%', height: 'auto', display: 'block' }} />
           </div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: '0' }}>
             <h2
               style={{
                 fontSize: '1.8rem',
@@ -628,12 +653,15 @@ export default function Home() {
                 marginBottom: '1rem',
               }}
             >
-              Starting right here. RIGHT NOW
+              Starting right here. RIGHT NOW.
             </p>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-              Please don't hesitate to ask and book your free session.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+          </div>
+        </div>
+        <div style={{ marginTop: '1rem' }}>
+          <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+            Please don't hesitate to ask and book your free session.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <a
                 href="https://wa.me/"
                 style={{
@@ -697,9 +725,39 @@ export default function Home() {
                 </svg>
                 TikTok
               </a>
-            </div>
+              <a
+                href="https://youtube.com/"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.8rem',
+                  padding: '1rem',
+                  backgroundColor: '#FF6B9D',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  borderRadius: '0.6rem',
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                YouTube
+              </a>
           </div>
         </div>
+      </section>
+
+      {/* FOOTER */}
+      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#1a1a1a', color: '#ffffff', textAlign: 'center' }}>
+        <p style={{ margin: '0.5rem 0', fontSize: '0.9rem' }}>
+          © Yasmin Nadia 2026
+        </p>
+        <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#999' }}>
+          Engineered by FatCalico&Co for FatCalico&Co 2026
+        </p>
       </section>
     </div>
   );
