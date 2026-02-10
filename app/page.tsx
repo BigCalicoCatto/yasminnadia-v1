@@ -789,7 +789,7 @@ export default function Home() {
                 animation: visibleSections.has('goals') ? `scaleIn 0.5s ease-out ${idx * 0.05}s forwards` : 'none',
                 opacity: visibleSections.has('goals') ? 1 : 0,
                 boxShadow: '0 15px 40px rgba(255, 255, 255, 0.9), 0 5px 15px rgba(255, 255, 255, 0.7)',
-                ...(idx === 6 && { gridColumn: '1 / -1', maxWidth: '200px', margin: '0 auto' }),
+                ...(idx === 6 && { gridColumn: '1 / -1', display: 'flex', alignItems: 'center', justifyContent: 'center', maxWidth: '200px', marginLeft: 'auto', marginRight: 'auto' }),
               }}
             >
               {goal}
