@@ -452,7 +452,7 @@ export default function Home() {
       </section>
 
       {/* WHO I WORK WITH */}
-      <section id="work-with" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#ffffff', opacity: visibleSections.has('work-with') ? 1 : 0 }}>
+      <section id="work-with" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#f5f1ed', opacity: visibleSections.has('work-with') ? 1 : 0 }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -485,6 +485,7 @@ export default function Home() {
                 fontSize: '0.95rem',
                 animation: visibleSections.has('work-with') ? `scaleIn 0.5s ease-out ${idx * 0.05}s forwards` : 'none',
                 opacity: visibleSections.has('work-with') ? 1 : 0,
+                boxShadow: '0 15px 40px rgba(255, 255, 255, 0.9), 0 5px 15px rgba(255, 255, 255, 0.7)',
                 ...(idx === 6 && { gridColumn: '1 / -1', maxWidth: '200px', margin: '0 auto' }),
               }}
             >
@@ -753,7 +754,7 @@ export default function Home() {
       />
 
       {/* PICK YOUR GOAL */}
-      <section id="goals" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9', opacity: visibleSections.has('goals') ? 1 : 0 }}>
+      <section id="goals" data-animate style={{ padding: '2rem 1.5rem', backgroundColor: '#f5f1ed', opacity: visibleSections.has('goals') ? 1 : 0 }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -787,6 +788,8 @@ export default function Home() {
                 fontSize: '0.95rem',
                 animation: visibleSections.has('goals') ? `scaleIn 0.5s ease-out ${idx * 0.05}s forwards` : 'none',
                 opacity: visibleSections.has('goals') ? 1 : 0,
+                boxShadow: '0 15px 40px rgba(255, 255, 255, 0.9), 0 5px 15px rgba(255, 255, 255, 0.7)',
+                ...(idx === 6 && { gridColumn: '1 / -1', maxWidth: '200px', margin: '0 auto' }),
               }}
             >
               {goal}
