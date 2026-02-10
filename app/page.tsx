@@ -5,7 +5,24 @@ import { useState, useEffect, useRef } from 'react';
 export default function Home() {
   const [heroOpacity, setHeroOpacity] = useState(1);
   const [heroTextVisible, setHeroTextVisible] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  const sections = [
+    { id: 'about', label: 'About Me' },
+    { id: 'work-with', label: 'Who I Work With' },
+    { id: 'offer', label: 'What I Offer' },
+    { id: 'goals', label: 'Pick Your Goal' },
+    { id: 'cta', label: 'Let\'s Connect' },
+  ];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  };
 
   useEffect(() => {
     setHeroTextVisible(true);
@@ -35,6 +52,53 @@ export default function Home() {
 
   return (
     <div style={{ backgroundColor: '#ffffff', color: '#1a1a1a', fontFamily: 'Trebuchet MS, sans-serif' }}>
+      {/* HEADER */}
+      <header style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#ffffff', borderBottom: '1px solid #f0f0f0', padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FF6B9D', margin: 0 }}>Yasmin Nadia</h1>
+        
+        {/* Hamburger Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '5px',
+            padding: '0.5rem',
+          }}
+        >
+          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s' }} />
+          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s' }} />
+          <div style={{ width: '24px', height: '2px', backgroundColor: '#FF6B9D', transition: 'all 0.3s' }} />
+        </button>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, backgroundColor: '#ffffff', borderBottom: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column' }}>
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => scrollToSection(section.id)}
+                style={{
+                  padding: '1rem 1.5rem',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  color: '#1a1a1a',
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                  borderBottom: '1px solid #f0f0f0',
+                }}
+              >
+                {section.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </header>
       {/* HERO */}
       <section
         style={{
@@ -206,7 +270,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT ME */}
-      <section style={{ padding: '2rem 1.5rem' }}>
+      <section id="about" style={{ padding: '2rem 1.5rem' }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -270,7 +334,7 @@ export default function Home() {
       </section>
 
       {/* WHO I WORK WITH */}
-      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#ffffff' }}>
+      <section id="work-with" style={{ padding: '2rem 1.5rem', backgroundColor: '#ffffff' }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -404,7 +468,7 @@ export default function Home() {
       </section>
 
       {/* WHAT I OFFER - CAROUSEL */}
-      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D' }}>
+      <section id="offer" style={{ padding: '2rem 1.5rem', backgroundColor: '#FF6B9D' }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -553,7 +617,7 @@ export default function Home() {
       </section>
 
       {/* PICK YOUR GOAL */}
-      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+      <section id="goals" style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
         <h2
           style={{
             fontSize: '1.8rem',
@@ -615,7 +679,7 @@ export default function Home() {
       />
 
       {/* CTA */}
-      <section style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
+      <section id="cta" style={{ padding: '2rem 1.5rem', backgroundColor: '#f9f9f9' }}>
         <div
           style={{
             display: 'flex',
